@@ -11,6 +11,7 @@ resource "aws_launch_template" "main" {
   image_id      = "${var.image_id}"
   instance_type = "${var.instance_types[0]}"
   user_data     = "${base64encode(var.instance_user_data)}"
+  key_name      = "${var.instance_key_name}"
 
   vpc_security_group_ids = ["${var.vpc_security_group_ids}"]
 }
@@ -26,6 +27,7 @@ resource "aws_launch_template" "custom_instance_profile" {
   }
 
   user_data = "${base64encode(var.instance_user_data)}"
+  key_name  = "${var.instance_key_name}"
 
   vpc_security_group_ids = ["${var.vpc_security_group_ids}"]
 }

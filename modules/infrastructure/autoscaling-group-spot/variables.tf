@@ -47,6 +47,11 @@ variable "instance_user_data" {
   description = "The user data to provide when launching the autoscaling group's instances"
 }
 
+variable "instance_key_name" {
+  default     = ""
+  description = "The key name to use for the autoscaling group instances"
+}
+
 variable "vpc_security_group_ids" {
   type = "list"
 
@@ -95,5 +100,21 @@ variable "spot_max_price" {
   description = <<EOF
   Maximum price per unit hour that the user is willing to pay for
   the Spot instances.
+  EOF
+}
+
+variable "scale_out_alarm_cpu_threshold" {
+  default = 70
+
+  description = <<EOF
+  The average CPU usage of the Autoscaling Group above which scale out
+  EOF
+}
+
+variable "scale_in_alarm_cpu_threshold" {
+  default = 30
+
+  description = <<EOF
+  The average CPU usage of the Autoscaling Group under which scale in
   EOF
 }

@@ -60,6 +60,11 @@ variable "ecs_cluster_instance_types" {
   EOF
 }
 
+variable "ecs_cluster_instance_key_name" {
+  default     = ""
+  description = "The key name to use for the ECS cluster's instances"
+}
+
 variable "ecs_cluster_mount_efs" {
   default = true
 
