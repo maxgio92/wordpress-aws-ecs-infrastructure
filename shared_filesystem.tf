@@ -13,7 +13,7 @@ module "efs" {
 
   vpc_id                     = "${module.vpc.vpc_id}"
   allowed_security_groups    = ["${aws_security_group.ecs_cluster.id}"]
-  mount_target_subnets_count = "${length(module.vpc.private_subnet_ids)}"
+  mount_target_subnets_count = "${var.network_private_subnet_count}"
   mount_target_subnets       = "${module.vpc.private_subnet_ids}"
   prefix_name                = "${var.app_name}-${var.env_name}"
 }
