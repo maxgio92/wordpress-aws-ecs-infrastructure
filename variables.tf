@@ -59,3 +59,11 @@ variable "ecs_cluster_instance_types" {
   will be used in preference to those lower down.
   EOF
 }
+
+variable "ecs_cluster_mount_efs" {
+  default = true
+
+  description = <<EOF
+  Whether to mount an EFS filesystem on ECS cluster' instances.
+  EOF
+}
