@@ -10,7 +10,7 @@ module "ecs_autoscaling_group" {
   image_id = "${data.aws_ami.latest_ecs_optimized.id}"
 
   instance_profile_arn                     = "${module.ecs_instance_profile.arn}"
-  instance_user_data                       = "${data.template_file.ecs_instance_user_data.rendered}"
+  instance_user_data                       = "${var.ecs_cluster_mount_efs ? data.template_file.ecs_instance_user_data_efs.rendered : data.template_file.ecs_instance_user_data.rendered}"
   instance_types                           = ["${var.ecs_cluster_instance_types}"]
   on_demand_percentage_above_base_capacity = 50
   vpc_subnet_ids                           = ["${module.vpc.private_subnet_ids}"]
