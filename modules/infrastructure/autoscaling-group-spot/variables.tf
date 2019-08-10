@@ -47,6 +47,11 @@ variable "instance_user_data" {
   description = "The user data to provide when launching the autoscaling group's instances"
 }
 
+variable "instance_key_name" {
+  default     = ""
+  description = "The key name to use for the autoscaling group instances"
+}
+
 variable "vpc_security_group_ids" {
   type = "list"
 
