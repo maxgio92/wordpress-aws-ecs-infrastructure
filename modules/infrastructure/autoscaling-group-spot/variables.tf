@@ -102,3 +102,19 @@ variable "spot_max_price" {
   the Spot instances.
   EOF
 }
+
+variable "scale_out_alarm_cpu_threshold" {
+  default = 70
+
+  description = <<EOF
+  The average CPU usage of the Autoscaling Group above which scale out
+  EOF
+}
+
+variable "scale_in_alarm_cpu_threshold" {
+  default = 30
+
+  description = <<EOF
+  The average CPU usage of the Autoscaling Group under which scale in
+  EOF
+}
