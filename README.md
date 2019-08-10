@@ -4,8 +4,6 @@ This project is based on Terraform.
 
 ## Project architecture
 
-### Terraform modules structure
-
 ### State management
 
 #### Terraform backend
@@ -39,4 +37,3 @@ Initialize the backend if has not yet been done:
 ```
 terraform init
 ```
-**\*** to do only once and whenever a new module is added.
