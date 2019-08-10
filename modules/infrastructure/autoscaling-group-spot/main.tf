@@ -40,6 +40,7 @@ resource "aws_autoscaling_group" "main" {
     launch_template {
       launch_template_specification {
         launch_template_id = "${local.launch_template_id}"
+        version            = "$Latest"
       }
 
       override {
