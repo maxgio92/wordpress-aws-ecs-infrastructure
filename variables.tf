@@ -45,3 +45,17 @@ variable "network_private_subnet_mask_newbits" {
   subnet mask, 8 new bits).
   EOF
 }
+
+#---------------------------------------------------
+# ECS cluster
+#---------------------------------------------------
+
+variable "ecs_cluster_instance_types" {
+  type = "list"
+
+  description = <<EOF
+  A list of 2 instance types for the ECS cluster.
+  The list is prioritized: instances at the top of the list
+  will be used in preference to those lower down.
+  EOF
+}
