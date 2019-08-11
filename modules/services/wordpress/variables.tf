@@ -6,6 +6,10 @@ variable "cluster_id" {
   description = "The ID of the cluster that the service should run on"
 }
 
+variable "cluster_name" {
+  description = "The name of the cluster that the service should run on"
+}
+
 variable "desired_capacity" {
   description = "The number of tasks to place and keep running"
   default     = 1
@@ -19,6 +23,11 @@ variable "min_capacity" {
 variable "max_capacity" {
   description = "The maximum number of tasks to place and keep running"
   default     = 2
+}
+
+variable "create_autoscaling_role" {
+  default     = false
+  description = "Whether to create a custom autoscaling IAM role for the service"
 }
 
 variable "healthcheck_timeout" {
