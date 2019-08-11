@@ -5,8 +5,9 @@
 module "app-service" {
   source = "./modules/services/wordpress"
 
-  vpc_id     = "${module.vpc.vpc_id}"
-  cluster_id = "${aws_ecs_cluster.ecs_cluster.id}"
+  vpc_id       = "${module.vpc.vpc_id}"
+  cluster_id   = "${aws_ecs_cluster.ecs_cluster.id}"
+  cluster_name = "${aws_ecs_cluster.ecs_cluster.name}"
 
   desired_capacity = "${var.app_service_desired_capacity}"
   min_capacity     = "${var.app_service_min_capacity}"
