@@ -6,6 +6,12 @@ variable "app_name" {
   description = "The name of the application"
 }
 
+variable "app_endpoint_public_http_port" {
+  description = <<EOF
+  The port on which to communicate via HTTP to the application
+  EOF
+}
+
 variable "env_name" {
   description = "The name of the application environment"
 }
