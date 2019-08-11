@@ -1,0 +1,65 @@
+[
+  {
+    "name": "nginx",
+    "image": "${nginx_image_repository_uri}:${nginx_image_version}",
+    "links": ["php-fpm:php-fpm"],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-region": "${log_group_region}",
+        "awslogs-group": "${nginx_log_group_name}",
+        "awslogs-stream-prefix": "${log_group_prefix}"
+      }
+    },
+    "memoryReservation": ${nginx_memory_soft_limit},
+    "mountPoints": [
+        {
+            "sourceVolume": "uploads",
+            "containerPath": "/var/www/html/wp-content/uploads",
+            "readOnly": true
+        }
+    ],
+    "portMappings": [
+      {
+        "containerPort": ${nginx_port}
+      }
+    ]
+  },
+  {
+    "name": "php-fpm",
+    "environment": [
+        {
+            "name": "WORDPRESS_DB_HOST",
+            "value": "${php_fpm_db_host}"
+        },
+        {
+            "name": "WORDPRESS_DB_NAME",
+            "value": "${php_fpm_db_name}"
+        },
+        {
+            "name": "WORDPRESS_DB_USER",
+            "value": "${php_fpm_db_user}"
+        },
+        {
+            "name": "WORDPRESS_DB_PASSWORD",
+            "value": "${php_fpm_db_password}"
+        }
+    ],
+    "image": "${php_fpm_image_repository_uri}:${php_fpm_image_version}",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-region": "${log_group_region}",
+        "awslogs-group": "${php_fpm_log_group_name}",
+        "awslogs-stream-prefix": "${log_group_prefix}"
+      }
+    },
+    "memoryReservation": ${php_fpm_memory_soft_limit},
+    "mountPoints": [
+      {
+          "sourceVolume": "uploads",
+          "containerPath": "/var/www/html/wp-content/uploads"
+      }
+    ]
+  }
+]
