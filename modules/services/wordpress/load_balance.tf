@@ -9,7 +9,7 @@ resource "aws_alb_target_group" "web" {
   protocol = "HTTP"
 
   health_check {
-    path    = "/healthcheck"
+    path    = "${var.healthcheck_path}"
     matcher = "200-302"
     timeout = "${var.healthcheck_timeout}"
   }
