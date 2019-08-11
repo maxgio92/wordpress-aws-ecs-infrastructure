@@ -25,3 +25,14 @@ module "public_lb" {
 
   prefix_name = "${var.app_name}-${var.env_name}"
 }
+
+resource "aws_security_group_rule" "public_lb_ecs_cluster" {
+  type      = "ingress"
+  from_port = 0
+  to_port   = 0
+  protocol  = "-1"
+
+  source_security_group_id = "${module.public_lb.security_group_id}"
+
+  security_group_id = "${aws_security_group.ecs_cluster.id}"
+}
