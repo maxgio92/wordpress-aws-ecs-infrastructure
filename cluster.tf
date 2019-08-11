@@ -56,17 +56,23 @@ resource "aws_security_group" "ecs_cluster" {
 
   vpc_id = "${module.vpc.vpc_id}"
 
-  ingress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "tcp"
-    self      = true
-  }
-
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_security_group_rule" "ecs_cluster_from_itself" {
+  description = "Allow SSH traffic to ${aws_security_group.ecs_cluster.name} from itself"
+
+  type      = "ingress"
+  from_port = 22
+  to_port   = 22
+  protocol  = "tcp"
+
+  source_security_group_id = "${aws_security_group.ecs_cluster.id}"
+
+  security_group_id = "${aws_security_group.ecs_cluster.id}"
 }
