@@ -8,7 +8,7 @@ module "public_lb" {
 
   listeners = [
     {
-      port     = 80
+      port     = "${var.app_endpoint_public_http_port}"
       protocol = "HTTP"
     },
   ]
