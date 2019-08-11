@@ -27,10 +27,10 @@ module "app-service" {
   php_fpm_image_repository_uri = "${module.wordpress_php_fpm_ecr_repository.url}"
   php_fpm_image_version        = "${var.app_service_php_fpm_image_version}"
 
-  db_host     = "${var.app_service_db_host}"
-  db_name     = "${var.app_service_db_name}"
-  db_user     = "${var.app_service_db_user}"
-  db_password = "${var.app_service_db_password}"
+  db_host     = "${module.database.this_rds_cluster_endpoint}"
+  db_name     = "${module.database.this_rds_cluster_database_name}"
+  db_user     = "${module.database.this_rds_cluster_master_username}"
+  db_password = "${module.database.this_rds_cluster_master_password}"
 
   prefix_name = "${var.app_name}-${var.env_name}"
 }
