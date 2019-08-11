@@ -17,7 +17,7 @@ module "public_lb" {
 
   security_group_public_rules = [
     {
-      port     = 80
+      port     = "${var.app_endpoint_public_http_port}"
       protocol = "tcp"
       source   = "0.0.0.0/0"
     },
