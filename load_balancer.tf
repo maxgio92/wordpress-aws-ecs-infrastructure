@@ -8,7 +8,7 @@ module "public_lb" {
 
   listeners = [
     {
-      port     = 80
+      port     = "${var.app_endpoint_public_http_port}"
       protocol = "HTTP"
     },
   ]
@@ -24,4 +24,17 @@ module "public_lb" {
   ]
 
   prefix_name = "${var.app_name}-${var.env_name}"
+}
+
+resource "aws_security_group_rule" "ecs_cluster_from_public_lb" {
+  description = "Allow traffic to ${aws_security_group.ecs_cluster.name} from its public load balancer"
+
+  type      = "ingress"
+  from_port = 0
+  to_port   = 0
+  protocol  = "-1"
+
+  source_security_group_id = "${module.public_lb.security_group_id}"
+
+  security_group_id = "${aws_security_group.ecs_cluster.id}"
 }
