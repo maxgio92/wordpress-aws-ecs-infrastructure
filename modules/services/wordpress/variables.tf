@@ -30,6 +30,10 @@ variable "create_autoscaling_role" {
   description = "Whether to create a custom autoscaling IAM role for the service"
 }
 
+variable "healthcheck_path" {
+  default = "/"
+}
+
 variable "healthcheck_timeout" {
   default = 5
 }
