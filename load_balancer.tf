@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------------
+# Public load balancer
+# -----------------------------------------------------------------------
+
+# Application load balancer
+
 module "public_lb" {
   source = "github.com/maxgio92/terraform-aws-load-balancer?ref=1.0.0"
 
@@ -25,6 +31,8 @@ module "public_lb" {
 
   prefix_name = "${var.app_name}-${var.env_name}"
 }
+
+# Allow traffic from the LB to the ECS cluster
 
 resource "aws_security_group_rule" "ecs_cluster_from_public_lb" {
   description = "Allow traffic to ${aws_security_group.ecs_cluster.name} from its public load balancer"
