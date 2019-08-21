@@ -2,7 +2,7 @@
 # Application service
 # -----------------------------------------------------------------------
 
-module "app-service" {
+module "app_service" {
   source = "./modules/services/wordpress"
 
   vpc_id       = "${module.vpc.vpc_id}"
