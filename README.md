@@ -2,9 +2,33 @@
 
 This project is based on Terraform.
 
-## Terraform backend
+## Project architecture
 
-### Creation of the needed resources
+### Blocks
+
+The project consists of infrastructure blocks made as independent as possible:
+
+| Block | Configuration file | Variables file | 
+| --- | --- | --- |
+| Network | network.tf | network\_variables.tf |
+| Container hosts cluster | cluster.tf | cluster\_variables.tf |
+| Network filesystem for shared storage| nfs.tf | / |
+| Application web service | application.tf | application\_variables.tf |
+| Public load balancer | load\_balancer.tf | / |
+| Database | database.tf | database\_variables.tf |
+| Resources for HTTPS | https.tf | https\_variables.tf |
+| Docker images repositories | repositories.tf | / |
+
+### Terraform configuration:
+
+| Part | Configuration file |
+| --- | --- |
+| Backend | terraform\_backend.tf |
+| Providers | terraform\_providers.tf |
+
+## Pre-run
+
+### Creation of the needed resources for the Terraform backend
 
 This step needs to be executed only on the project startup.
 
@@ -43,17 +67,30 @@ Initialize the backend if has not yet been done:
 terraform init
 ```
 
-## Project architecture
+## Run
 
-The project consists of blocks made as independent as possible:
+### Requisites
 
-| Block | File name | 
-| --- | --- |
-| Network | network.tf | 
-| Container hosts cluster | cluster.tf |
-| Network filesystem | nfs.tf |
-| Application service | application.tf |
-| Load balancer (public) | load\_balancer.tf |
-| Database | database.tf |
-| HTTPS | https.tf |
-| Docker images repositories | repositories.tf | 
+- an IAM user with AdministratorAccess policy
+
+Please specify the user's credentials via environment variables* or edit the terraform\_providers.tf file.
+
+The required input variables will be requested running terraform plan/apply. To avoid it create a .tfvars file and specify it with the '-var-file' option or create a .auto.tfvars file on the root of the project.
+
+\* AWS\_ACCESS\_KEY\_ID + AWS\_SECRET\_ACCESS\_KEY or if configured, AWS\_PROFILE.
+
+### Apply
+
+Check the changes and apply them:
+
+```
+terraform apply
+```
+
+
+
+
+
+
+
+
