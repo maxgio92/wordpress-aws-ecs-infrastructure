@@ -1,4 +1,9 @@
-# Mount EFS on ECS cluster's instances
+# -----------------------------------------------------------------------
+# EFS
+# -----------------------------------------------------------------------
+
+# ECS cluster instances' user data to mount EFS
+
 data "template_file" "ecs_instance_user_data_efs" {
   template = "${file("./templates/user-data-efs.sh")}"
 
@@ -7,6 +12,8 @@ data "template_file" "ecs_instance_user_data_efs" {
     efs_dns_name = "${module.efs.dns_name}"
   }
 }
+
+# EFS resources
 
 module "efs" {
   source = "github.com/maxgio92/terraform-aws-efs?ref=1.0.0"
