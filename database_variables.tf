@@ -1,7 +1,3 @@
-#---------------------------------------------------
-# Database
-#---------------------------------------------------
-
 variable "database_create_cluster_parameter_group" {
   default = false
 }
