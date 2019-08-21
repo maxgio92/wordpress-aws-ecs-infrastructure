@@ -19,13 +19,18 @@ NB: Remember to configure the credentials via environment variables with AWS\_PR
 Initialize on the administrator account the resources that the **Terraform backend** requires.
 
 ###### Creation
+
+Requisites:
+
+- Python virtualenv
+
 This will create:
 
 - an S3 bucket to store the Terraform state files
 - a DynamoDB table for state locking and consistency checking
 
 ``
-PROJECT_NAME=wordpress-aws-ecs-infrastructure ./init.sh
+APP_NAME=wordpress-aws-ecs-infrastructure ./init.sh
 ``
 
 ##### Backend initialization *
