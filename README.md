@@ -6,6 +6,8 @@ This project is based on Terraform.
 
 ### Creation of the needed resources
 
+This step needs to be executed only on the project startup.
+
 #### Requisites
 - an IAM user on the **administrator account** that have permissions on:
  - S3 (create buckets and others listed in detail here: https://www.terraform.io/docs/backends/types/s3.html#s3-bucket-permissions) 
