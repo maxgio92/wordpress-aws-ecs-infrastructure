@@ -13,11 +13,25 @@ module "public_lb" {
     },
   ]
 
-  security_group_public_rules_count = 1
+  tls_listeners_count = 1
+
+  tls_listeners = [
+    {
+      port            = "${var.app_endpoint_public_https_port}"
+      certificate_arn = "${aws_acm_certificate.app.arn}"
+    },
+  ]
+
+  security_group_public_rules_count = 2
 
   security_group_public_rules = [
     {
       port     = "${var.app_endpoint_public_http_port}"
+      protocol = "tcp"
+      source   = "0.0.0.0/0"
+    },
+    {
+      port     = "${var.app_endpoint_public_https_port}"
       protocol = "tcp"
       source   = "0.0.0.0/0"
     },
