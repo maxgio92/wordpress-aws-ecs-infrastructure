@@ -42,3 +42,18 @@ Initialize the backend if has not yet been done:
 ```
 terraform init
 ```
+
+## Project architecture
+
+The project consists of blocks made as independent as possible:
+
+| Block | File name | 
+| --- | --- |
+| Network | network.tf | 
+| Container hosts cluster | cluster.tf |
+| Network filesystem | nfs.tf |
+| Application service | application.tf |
+| Load balancer (public) | load\_balancer.tf |
+| Database | database.tf |
+| HTTPS | https.tf |
+| Docker images repositories | repositories.tf | 
