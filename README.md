@@ -29,9 +29,9 @@ This will create:
 - an S3 bucket to store the Terraform state files
 - a DynamoDB table for state locking and consistency checking
 
-``
+```
 APP_NAME=wordpress-aws-ecs-infrastructure ./init.sh
-``
+```
 
 ##### Backend initialization *
 
