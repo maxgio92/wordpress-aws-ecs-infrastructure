@@ -3,15 +3,21 @@
 set -e
 
 aws_region=eu-west-1
-tfstate_name=${PROJECT_NAME}.tfstate.d
+tfstate_name=${APP_NAME}.tfstate.d
 tfstate_s3_bucket=${tfstate_name}
 tfstate_dynamodb_table=${tfstate_name}
 
-if [ -z "${PROJECT_NAME// }" ]; then
-  echo "Please define PROJECT_NAME environment variable"
+if [ -z "${APP_NAME// }" ]; then
+  echo >&2 "Please define APP_NAME environment variable"
   exit 1
 fi
 
+command -v virtualenv > /dev/null 2>&1 || {
+  echo >&2 "Please install Python virtualenv"
+  exit 1
+}
+    
+virtualenv venv
 . venv/bin/activate
 pip install -r requirements.txt
 
